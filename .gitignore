@@ -17,7 +17,7 @@ web-build/
 .vscode
 
 #Webstorm
-.idea
+.idea/
 
 # env
 .env

@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, Image, FlatList } from 'react-
 
 import styles from './welcome.style';
 import { useRouter } from 'expo-router';
-import { icons } from '../../../constants';
+import { SIZES, icons } from '../../../constants';
 
 const jobTypes = [
   'Full-time',
@@ -45,11 +45,17 @@ const Welcome = () => {
           renderItem={({ item }) => (
             <TouchableOpacity
               style={styles.tab(activeJobType, item)}
-              onPress={() => setactiveJobType(item)}
+              onPress={() => {
+                setactiveJobType(item);
+                router.push(`/search/${item}`);
+              }}
             >
-              <Text>{item}</Text>
+              <Text style={styles.tabText(activeJobType, item)}>{item}</Text>
             </TouchableOpacity>
           )}
+          keyExtractor={(item) => item}
+          contentContainerStyle={{ columnGap: SIZES.small }}
+          horizontal
         />
       </View>
     </View>
